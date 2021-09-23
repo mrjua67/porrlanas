@@ -1,0 +1,15 @@
+Django==3.0.5
+django-widget-tweaks==1.4.8
+sqlparse==0.3.1
+
+
+py manage.py createsuperuser
+
+
+pip install django==3.x.x
+pip install django-widget-tweaks
+pip install xhtml2pdf
+
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
