@@ -1,4 +1,4 @@
-{% extends 'ecom/homebase.html' %}
+{% extends 'ecom/homebase.php' %}
 {% load static %}
 {% block content %}
 

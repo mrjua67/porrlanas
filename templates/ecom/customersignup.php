@@ -3,7 +3,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Porrlanas</title>
+    <title></title>
+
+
+
+
     <style media="screen">
       body {
     margin: 0;
@@ -142,18 +146,24 @@ a.socialIcon:hover,
     </style>
   </head>
   <body>
-    {% include "ecom/navbar.html" %}
+    {% include "ecom/navbar.php" %}
     <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <form class="box" method="post">
+                <form class="box" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                    <h1>Inicio de sesión del cliente</h1>
-                    <p class="text-muted"> Por favor, introduce tu usuario y contraseña!</p>
-                               {% render_field form.username class="form-control" placeholder="Usuario" %}
-                               {% render_field form.password class="form-control" placeholder="Contraseña" %}
-                     <input type="submit" name="" value="Iniciar" >
+                    <h1>REGISTRO DE CLIENTE</h1>
+                    <p class="text-muted"> Ingrese sus datos para crear una cuenta !</p>
+                      {% render_field userForm.first_name class="form-control" placeholder="Primer Nombre" %}
+                        {% render_field userForm.last_name class="form-control" placeholder="Segundo Nombre" %}
+                          {% render_field userForm.username class="form-control" placeholder="Usuario" %}
+                            {% render_field userForm.password class="form-control" placeholder="Contraseña" %}
+                              {% render_field customerForm.address class="form-control" placeholder="Direccion" %}
+                                {% render_field customerForm.mobile class="form-control" placeholder="Numero Celular" %}
+                                  {% render_field customerForm.profile_pic class="form-control" placeholder="Foto de perfil" %}
+                  
+                     <input type="submit" name="" value="Create">
 
                 </form>
             </div>
@@ -163,6 +173,8 @@ a.socialIcon:hover,
 <br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br>
-{% include "ecom/footer.html" %}
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
+{% include "ecom/footer.php" %}
   </body>
 </html>

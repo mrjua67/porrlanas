@@ -17,14 +17,14 @@
 
 <body style="background-color: #B3E5FC;">
   {%if request.user.is_authenticated%}
-    {% include "ecom/customer_navbar.html" %}
+    {% include "ecom/customer_navbar.php" %}
   {%else%}
-    {% include "ecom/navbar.html" %}
+    {% include "ecom/navbar.php" %}
   {%endif%}
   <br><br><br>
 <h3 style="text-align:center;">“Distribuidora de Lanas y Venta de Tejidos” </h3>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  {% include "ecom/footer.html" %}
+  {% include "ecom/footer.php" %}
 </body>
 <!--
 developed By :  Juan Pablo Guerras Porras

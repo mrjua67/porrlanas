@@ -1,4 +1,4 @@
-{% extends 'ecom/admin_base.html' %}
+{% extends 'ecom/admin_base.php' %}
 {% load widget_tweaks %}
 {% block content %}
 
@@ -35,6 +35,7 @@
       cursor: pointer;
       background: #0062cc;
       color: #fff;
+      margin-left:100px;
     }
 
     .menu {
@@ -48,49 +49,25 @@
 </head>
 <br><br><br><br><br><br>
 <!------ update page for doctor by admin(sumit)  ---------->
-<form method="post" enctype="multipart/form-data">
+<form method="post">
   {% csrf_token %}
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>Actualizar los detalles del cliente</p>
+        <p>Actualizar el Estado del Pedido</p>
       </div>
       <div class="form-content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              {% render_field userForm.first_name class="form-control" placeholder="Primer Nombre" %}
-            </div>
-            <div class="form-group">
-              {% render_field userForm.username class="form-control" placeholder="Usuario" %}
-            </div>
-            <div class="form-group">
-              {% render_field customerForm.mobile class="form-control" placeholder="Telefono" %}
-            </div>
-            <div class="form-group">
-              {% render_field customerForm.profile_pic class="form-control" placeholder="Foto de Perfil" %}
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              {% render_field userForm.last_name class="form-control" placeholder="Segundo Nombre" %}
-            </div>
-            <div class="form-group">
-              {% render_field userForm.password class="form-control" placeholder="Contraseña" %}
-            </div>
-            <div class="form-group">
-              {% render_field customerForm.address class="form-control" placeholder="Direccion" %}
+
+              {% render_field orderForm.status class="form-control" placeholder="Direccion" %}
             </div>
 
           </div>
         </div>
         <button type="submit" class="btnSubmit">Actualizar</button>
-      </div>
-    </div>
-  </div>
+
 </form>
 <!--
-developed By :  Juan Pablo Guerras Porras
+developed By : Bran tabares, Juan Pablo Guerras
 facebook : 
 Wasap: 
 -->

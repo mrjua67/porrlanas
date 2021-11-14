@@ -1,4 +1,4 @@
-{% extends 'ecom/admin_base.html' %}
+{% extends 'ecom/admin_base.php' %}
 {% load widget_tweaks %}
 {% block content %}
 

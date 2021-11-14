@@ -1,8 +1,8 @@
-{% extends 'ecom/admin_base.html' %}
+{% extends 'ecom/admin_base.php' %}
 {% load static %}
 {% block content %}
 <br>
-{%include 'ecom/admin_dashboard_cards.html'%}
+{%include 'ecom/admin_dashboard_cards.php'%}
 <br><br><br><br><br>
 
 <hr><hr>

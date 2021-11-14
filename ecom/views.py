@@ -17,7 +17,7 @@ def home_view(request):
         product_count_in_cart=0
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/index.php',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 #for showing login button for admin(by sumit)
@@ -44,7 +44,7 @@ def customer_signup_view(request):
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
             my_customer_group[0].user_set.add(user)
         return HttpResponseRedirect('customerlogin')
-    return render(request,'ecom/customersignup.html',context=mydict)
+    return render(request,'ecom/customersignup.php',context=mydict)
 
 #-----------for checking user iscustomer
 def is_customer(user):
@@ -85,14 +85,14 @@ def admin_dashboard_view(request):
     'ordercount':ordercount,
     'data':zip(ordered_products,ordered_bys,orders),
     }
-    return render(request,'ecom/admin_dashboard.html',context=mydict)
+    return render(request,'ecom/admin_dashboard.php',context=mydict)
 
 
 # admin view customer table
 @login_required(login_url='adminlogin')
 def view_customer_view(request):
     customers=models.Customer.objects.all()
-    return render(request,'ecom/view_customer.html',{'customers':customers})
+    return render(request,'ecom/view_customer.php',{'customers':customers})
 
 # admin delete customer
 @login_required(login_url='adminlogin')
@@ -120,13 +120,13 @@ def update_customer_view(request,pk):
             user.save()
             customerForm.save()
             return redirect('view-customer')
-    return render(request,'ecom/admin_update_customer.html',context=mydict)
+    return render(request,'ecom/admin_update_customer.php',context=mydict)
 
 # admin view the product
 @login_required(login_url='adminlogin')
 def admin_products_view(request):
     products=models.Product.objects.all()
-    return render(request,'ecom/admin_products.html',{'products':products})
+    return render(request,'ecom/admin_products.php',{'products':products})
 
 
 # admin add product by clicking on floating button
@@ -138,7 +138,7 @@ def admin_add_product_view(request):
         if productForm.is_valid():
             productForm.save()
         return HttpResponseRedirect('admin-products')
-    return render(request,'ecom/admin_add_products.html',{'productForm':productForm})
+    return render(request,'ecom/admin_add_products.php',{'productForm':productForm})
 
 
 @login_required(login_url='adminlogin')
@@ -157,7 +157,7 @@ def update_product_view(request,pk):
         if productForm.is_valid():
             productForm.save()
             return redirect('admin-products')
-    return render(request,'ecom/admin_update_product.html',{'productForm':productForm})
+    return render(request,'ecom/admin_update_product.php',{'productForm':productForm})
 
 
 @login_required(login_url='adminlogin')
@@ -170,7 +170,7 @@ def admin_view_booking_view(request):
         ordered_by=models.Customer.objects.all().filter(id = order.customer.id)
         ordered_products.append(ordered_product)
         ordered_bys.append(ordered_by)
-    return render(request,'ecom/admin_view_booking.html',{'data':zip(ordered_products,ordered_bys,orders)})
+    return render(request,'ecom/admin_view_booking.php',{'data':zip(ordered_products,ordered_bys,orders)})
 
 
 @login_required(login_url='adminlogin')
@@ -189,14 +189,14 @@ def update_order_view(request,pk):
         if orderForm.is_valid():
             orderForm.save()
             return redirect('admin-view-booking')
-    return render(request,'ecom/update_order.html',{'orderForm':orderForm})
+    return render(request,'ecom/update_order.php',{'orderForm':orderForm})
 
 
 # admin view the feedback
 @login_required(login_url='adminlogin')
 def view_feedback_view(request):
     feedbacks=models.Feedback.objects.all().order_by('-id')
-    return render(request,'ecom/view_feedback.html',{'feedbacks':feedbacks})
+    return render(request,'ecom/view_feedback.php',{'feedbacks':feedbacks})
 
 
 
@@ -218,8 +218,8 @@ def search_view(request):
     word="Searched Result :"
 
     if request.user.is_authenticated:
-        return render(request,'ecom/customer_home.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
-    return render(request,'ecom/index.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
+        return render(request,'ecom/customer_home.php',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/index.php',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
 
 
 # any one can add product to cart, no need of signin
@@ -234,7 +234,7 @@ def add_to_cart_view(request,pk):
     else:
         product_count_in_cart=1
 
-    response = render(request, 'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    response = render(request, 'ecom/index.php',{'products':products,'product_count_in_cart':product_count_in_cart})
 
     #adding product id to cookies
     if 'product_ids' in request.COOKIES:
@@ -276,7 +276,7 @@ def cart_view(request):
             #for total price shown in cart
             for p in products:
                 total=total+p.price
-    return render(request,'ecom/cart.html',{'products':products,'total':total,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/cart.php',{'products':products,'total':total,'product_count_in_cart':product_count_in_cart})
 
 
 def remove_from_cart_view(request,pk):
@@ -307,7 +307,7 @@ def remove_from_cart_view(request,pk):
                 value=value+product_id_in_cart[0]
             else:
                 value=value+"|"+product_id_in_cart[i]
-        response = render(request, 'ecom/cart.html',{'products':products,'total':total,'product_count_in_cart':product_count_in_cart})
+        response = render(request, 'ecom/cart.php',{'products':products,'total':total,'product_count_in_cart':product_count_in_cart})
         if value=="":
             response.delete_cookie('product_ids')
         response.set_cookie('product_ids',value)
@@ -320,8 +320,8 @@ def send_feedback_view(request):
         feedbackForm = forms.FeedbackForm(request.POST)
         if feedbackForm.is_valid():
             feedbackForm.save()
-            return render(request, 'ecom/feedback_sent.html')
-    return render(request, 'ecom/send_feedback.html', {'feedbackForm':feedbackForm})
+            return render(request, 'ecom/feedback_sent.php')
+    return render(request, 'ecom/send_feedback.php', {'feedbackForm':feedbackForm})
 
 
 #---------------------------------------------------------------------------------
@@ -337,7 +337,7 @@ def customer_home_view(request):
         product_count_in_cart=len(set(counter))
     else:
         product_count_in_cart=0
-    return render(request,'ecom/customer_home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/customer_home.php',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 
@@ -379,12 +379,12 @@ def customer_address_view(request):
                     for p in products:
                         total=total+p.price
 
-            response = render(request, 'ecom/payment.html',{'total':total})
+            response = render(request, 'ecom/payment.php',{'total':total})
             response.set_cookie('email',email)
             response.set_cookie('mobile',mobile)
             response.set_cookie('address',address)
             return response
-    return render(request,'ecom/customer_address.html',{'addressForm':addressForm,'product_in_cart':product_in_cart,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/customer_address.php',{'addressForm':addressForm,'product_in_cart':product_in_cart,'product_count_in_cart':product_count_in_cart})
 
 
 
@@ -425,7 +425,7 @@ def payment_success_view(request):
         models.Orders.objects.get_or_create(customer=customer,product=product,status='Pending',email=email,mobile=mobile,address=address)
 
     # after order placed cookies should be deleted
-    response = render(request,'ecom/payment_success.html')
+    response = render(request,'ecom/payment_success.php')
     response.delete_cookie('product_ids')
     response.delete_cookie('email')
     response.delete_cookie('mobile')
@@ -445,7 +445,7 @@ def my_order_view(request):
         ordered_product=models.Product.objects.all().filter(id=order.product.id)
         ordered_products.append(ordered_product)
 
-    return render(request,'ecom/my_order.html',{'data':zip(ordered_products,orders)})
+    return render(request,'ecom/my_order.php',{'data':zip(ordered_products,orders)})
 
 
 
@@ -487,7 +487,7 @@ def download_invoice_view(request,orderID,productID):
 
 
     }
-    return render_to_pdf('ecom/download_invoice.html',mydict)
+    return render_to_pdf('ecom/download_invoice.php',mydict)
 
 
 
@@ -498,7 +498,7 @@ def download_invoice_view(request,orderID,productID):
 @user_passes_test(is_customer)
 def my_profile_view(request):
     customer=models.Customer.objects.get(user_id=request.user.id)
-    return render(request,'ecom/my_profile.html',{'customer':customer})
+    return render(request,'ecom/my_profile.php',{'customer':customer})
 
 
 @login_required(login_url='customerlogin')
@@ -518,7 +518,7 @@ def edit_profile_view(request):
             user.save()
             customerForm.save()
             return HttpResponseRedirect('my-profile')
-    return render(request,'ecom/edit_profile.html',context=mydict)
+    return render(request,'ecom/edit_profile.php',context=mydict)
 
 
 
@@ -526,7 +526,7 @@ def edit_profile_view(request):
 #------------------------ ABOUT US AND CONTACT US VIEWS START --------------------
 #---------------------------------------------------------------------------------
 def aboutus_view(request):
-    return render(request,'ecom/aboutus.html')
+    return render(request,'ecom/aboutus.php')
 
 def contactus_view(request):
     sub = forms.ContactusForm()
@@ -537,5 +537,5 @@ def contactus_view(request):
             name=sub.cleaned_data['Name']
             message = sub.cleaned_data['Message']
             send_mail(str(name)+' || '+str(email),message, settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
-            return render(request, 'ecom/contactussuccess.html')
-    return render(request, 'ecom/contactus.html', {'form':sub})
+            return render(request, 'ecom/contactussuccess.php')
+    return render(request, 'ecom/contactus.php', {'form':sub})

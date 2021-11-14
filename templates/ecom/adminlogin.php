@@ -76,7 +76,7 @@
     </style>
   </head>
   <body>
-    {% include "ecom/navbar.html" %}
+    {% include "ecom/navbar.php" %}
     <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -99,6 +99,6 @@
 <br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br>
-{% include "ecom/footer.html" %}
+{% include "ecom/footer.php" %}
   </body>
 </html>

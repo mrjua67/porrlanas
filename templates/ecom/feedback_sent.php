@@ -5,9 +5,9 @@
 
 
   {%if request.user.is_authenticated%}
-    {% include "ecom/customer_navbar.html" %}
+    {% include "ecom/customer_navbar.php" %}
   {%else%}
-    {% include "ecom/navbar.html" %}
+    {% include "ecom/navbar.php" %}
   {%endif%}
 <br><br><br>
 <h3 style="color:blue;text-align:center;">Sus comentarios se enviaron correctamente !</h3>
@@ -17,7 +17,7 @@
 </div>
 
 <br><br><br><br><br><br><br><br>
-  {% include "ecom/footer.html" %}
+  {% include "ecom/footer.php" %}
 
 <!--
 developed By :  Juan Pablo Guerras Porras

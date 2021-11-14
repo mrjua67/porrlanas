@@ -1,4 +1,4 @@
-{% extends 'ecom/customer_base.html' %}
+{% extends 'ecom/customer_base.php' %}
 {% load widget_tweaks %}
 {% block content %}
 

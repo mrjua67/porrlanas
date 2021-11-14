@@ -22,7 +22,7 @@
 
 <body style="background-color: #B3E5FC;">
 
-  {% include "ecom/navbar.html" %}
+  {% include "ecom/navbar.php" %}
   <br><br>
   <div class="jumbotron">
     <h1 class="display-4">Su mensaje enviado con éxito!</h1>
@@ -34,7 +34,7 @@
     </p>
   </div>
 
-  {% include "ecom/footer.html" %}
+  {% include "ecom/footer.php" %}
 </body>
 <!--
 developed By :  Juan Pablo Guerras Porras
