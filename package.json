@@ -1,0 +1,27 @@
+{
+  "name": "porrlanas",
+  "version": "1.0.0",
+  "description": "e-commerce de distribuidora de lana y creadora de productos hechos en lana e hilos",
+  "main": "manage.py",
+  "scripts": {
+    "test": "py manage.py test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrjua67/porrlanas.git"
+  },
+  "keywords": [
+    "e-commerce",
+    "wool",
+    "trade",
+    "distributor",
+    "manufacturing",
+    "sector"
+  ],
+  "author": "Juan Pablo Guerra Porras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrjua67/porrlanas/issues"
+  },
+  "homepage": "https://github.com/mrjua67/porrlanas#readme"
+}
